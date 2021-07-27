@@ -5,19 +5,41 @@ const SearchByTrain = () => {
   const [stationCode, setStationCode] = useState("");
   const [searchedStationData, setSearchedStationData] = useState([]);
 
-  const SearchByStationCode = async () => {
-    const singleStationResult = await axios.get(
-      `${process.env.REACT_APP_BACKEND_URL}/${stationCode}`
-    );
-    // console.log(singleStationResult.data);
-    if (singleStationResult.data.hasOwnProperty("station_data")) {
-      //   console.log(singleStationResult.data.station_data.Trains);
-      setSearchedStationData(singleStationResult.data.station_data.Trains);
-    } else {
-      return;
+  useEffect(() => {
+    async function SearchByStationCode() {
+      try {
+        const singleStationResult = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/${stationCode}`
+        );
+        // console.log(singleStationResult.data);
+        if (singleStationResult.data.hasOwnProperty("station_data")) {
+          //   console.log(singleStationResult.data.station_data.Trains);
+          setSearchedStationData(singleStationResult.data.station_data.Trains);
+        } else {
+          return;
+        }
+      } catch (e) {
+        setSearchedStationData.error = e;
+      } finally {
+        return setSearchedStationData;
+      }
     }
-  };
-  useEffect(SearchByStationCode, [stationCode]);
+    SearchByStationCode();
+  }, [stationCode]);
+
+  //   const SearchByStationCode = async () => {
+  //     const singleStationResult = await axios.get(
+  //       `${process.env.REACT_APP_BACKEND_URL}/${stationCode}`
+  //     );
+  //     // console.log(singleStationResult.data);
+  //     if (singleStationResult.data.hasOwnProperty("station_data")) {
+  //       //   console.log(singleStationResult.data.station_data.Trains);
+  //       setSearchedStationData(singleStationResult.data.station_data.Trains);
+  //     } else {
+  //       return;
+  //     }
+  //   };
+  //   useEffect(SearchByStationCode, [stationCode]);
 
   return (
     <div>
