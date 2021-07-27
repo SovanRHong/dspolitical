@@ -11,7 +11,7 @@ const SearchByTrain = () => {
     );
     // console.log(singleStationResult.data);
     if (singleStationResult.data.hasOwnProperty("station_data")) {
-      console.log(singleStationResult.data.station_data.Trains);
+      //   console.log(singleStationResult.data.station_data.Trains);
       setSearchedStationData(singleStationResult.data.station_data.Trains);
     } else {
       return;
