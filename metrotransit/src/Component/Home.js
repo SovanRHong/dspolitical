@@ -5,8 +5,9 @@ function Home() {
   return (
     <div>
       <nav>
-        <Link to="/alltrains">Search All Trains</Link>
-
+        <p>
+          <Link to="/alltrains">Search All Trains</Link>
+        </p>
         <Link to="/searchtrains">Search Trains</Link>
       </nav>
     </div>

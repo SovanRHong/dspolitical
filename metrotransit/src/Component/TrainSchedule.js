@@ -11,9 +11,9 @@ const TrainSchedule = () => {
     const allTrainSchedule = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/ALL`
     );
-    //grab all the train data from the back end url
+    //GET train data from API
     console.log(allTrainSchedule.data.trains_data.Trains);
-    // console.log the data and dig down, so with the usable data we can map through it
+    //Print the data to Chrome Inspector
     setAllTrains(allTrainSchedule.data.trains_data.Trains);
   };
   // with the data that is usable for the user, set it to a state

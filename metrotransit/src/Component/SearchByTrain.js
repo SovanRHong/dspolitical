@@ -4,17 +4,24 @@ import React, { useState, useEffect } from "react";
 const SearchByTrain = () => {
   const [stationCode, setStationCode] = useState("");
   const [searchedStationData, setSearchedStationData] = useState([]);
+
   const SearchByStationCode = async () => {
     const singleStationResult = await axios.get(
       `${process.env.REACT_APP_BACKEND_URL}/${stationCode}`
     );
-    // console.log(singleStationResult.data.station_data.Trains);
-    // setSearchedStationData(singleStationResult.data.station_data.Trains);
+    // console.log(singleStationResult.data);
+    if (singleStationResult.data.hasOwnProperty("station_data")) {
+      console.log(singleStationResult.data.station_data.Trains);
+      setSearchedStationData(singleStationResult.data.station_data.Trains);
+    } else {
+      return;
+    }
   };
   useEffect(SearchByStationCode, [stationCode]);
 
   return (
     <div>
+      <p>Please enter your station code below:</p>
       <input
         id="stationCode"
         name="stationCode"
@@ -23,6 +30,7 @@ const SearchByTrain = () => {
         value={stationCode}
         onChange={(e) => setStationCode(e.target.value)}
       />
+
       {searchedStationData.map((trainsInfo, index) => {
         return (
           <div key={index}>
