@@ -3,23 +3,22 @@ import React, { useState, useEffect } from "react";
 
 const SearchByTrain = () => {
   const [stationCode, setStationCode] = useState("");
+  //save the user station code input to a state so we can later reuse it in the link so the user can find their station
   const [searchedStationData, setSearchedStationData] = useState([]);
-
+  //save the search station data into a state so we can use this information to display back to the user
   useEffect(() => {
     async function SearchByStationCode() {
       try {
         const singleStationResult = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/${stationCode}`
         );
-        // console.log(singleStationResult.data);
-        if (singleStationResult.data.hasOwnProperty("station_data")) {
-          //   console.log(singleStationResult.data.station_data.Trains);
-          setSearchedStationData(singleStationResult.data.station_data.Trains);
-        } else {
-          return;
-        }
+        //fetch the station data with the station code
+        //   console.log(singleStationResult.data.station_data.Trains);
+        // if successful display the data onto Chrome Inspector
+        setSearchedStationData(singleStationResult.data.station_data.Trains); //set the desired data into a useState
       } catch (e) {
-        setSearchedStationData.error = e;
+        //if not successful display error message
+        console.error("catch", e);
       } finally {
         return setSearchedStationData;
       }
@@ -37,9 +36,11 @@ const SearchByTrain = () => {
         placeholder=" Search by Station Code"
         value={stationCode}
         onChange={(e) => setStationCode(e.target.value)}
+        // setstationcode for an onchange so the user can type in thier desired station code.
       />
 
       {searchedStationData.map((trainsInfo, index) => {
+        //mapped through the given data and display if for the user
         return (
           <div key={index}>
             <p>Car: {trainsInfo.Car}</p>

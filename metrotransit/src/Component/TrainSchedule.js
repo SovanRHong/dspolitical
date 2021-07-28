@@ -3,7 +3,7 @@ import axios from "axios";
 
 const TrainSchedule = () => {
   const [allTrains, setAllTrains] = useState([]);
-  // save all the train information into a state, so we are able to render the information on our page
+  // save all the train information into a state, so we are able to render and update our state
   const [filter, setFilter] = useState("");
   // save the filter data into a state, so we are able to use it to allow the user to filter the train location
 
@@ -21,7 +21,8 @@ const TrainSchedule = () => {
         // if successful, set data to state
       } catch (e) {
         //if not successful display error message
-        console.log("catch", e);
+        console.error("catch", e);
+        alert(e);
       } finally {
         return setAllTrains;
       }
@@ -31,8 +32,8 @@ const TrainSchedule = () => {
   return (
     <div>
       <p>
-        To search for your current station, please type in your current City
-        location name below:
+        To search for all the trains in your current station, please type in
+        your desired station name below:
       </p>
       <input
         id="filter"
@@ -41,7 +42,7 @@ const TrainSchedule = () => {
         placeholder=" Filter by Current Station"
         value={filter}
         onChange={(e) => setFilter(e.target.value)}
-        // set filter everytime user change input
+        // set onchange to modify the previous state value with setfilter so it would create a new value
       />
 
       <>
@@ -59,6 +60,7 @@ const TrainSchedule = () => {
             }
           })
           .map((trainsInfo, i) => {
+            //mapped through the data and display the information
             return (
               <div className="container" key={i}>
                 <p>Car: {trainsInfo.Car}</p>
