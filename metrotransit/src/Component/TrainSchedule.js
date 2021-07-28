@@ -28,26 +28,6 @@ const TrainSchedule = () => {
     }
     fetchAllTrain();
   }, []);
-
-  // const fetchAllTrain = async () => {
-  //   try {
-  //     const allTrainSchedule = await axios.get(
-  //       `${process.env.REACT_APP_BACKEND_URL}/ALL`
-  //     );
-  //     //GET train data from API
-  //     console.log(allTrainSchedule.data.trains_data.Trains);
-  //     //Print the data to Chrome Inspector
-  //     setAllTrains(allTrainSchedule.data.trains_data.Trains);
-  //     // with the data that is usable for the user, set it to a state
-  //   } catch (e) {
-  //     setAllTrains.error = e;
-  //   } finally {
-  //     return setAllTrains;
-  //   }
-  // };
-
-  // useEffect(fetchAllTrain, []);
-  // // runs useEffect so the code would run and render every time the data changes add an empty array so you would not be in a continuous loop
   return (
     <div>
       <p>
