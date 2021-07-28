@@ -39,10 +39,10 @@ const SearchByTrain = () => {
         // setstationcode for an onchange so the user can type in thier desired station code.
       />
 
-      {searchedStationData.map((trainsInfo, index) => {
+      {searchedStationData.map((trainsInfo, i) => {
         //mapped through the given data and display if for the user
         return (
-          <div key={index}>
+          <div key={i}>
             <p>Car: {trainsInfo.Car}</p>
             <p>Line: {trainsInfo.Line}</p>
             <p>Location Name: {trainsInfo.LocationName}</p>
