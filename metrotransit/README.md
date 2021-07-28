@@ -4,6 +4,7 @@
 <p>Also hope you don't mind, but I had my dog help me to debug... he wasn't a lot of help.
 </p>
 
+![Frank](/Frank.JPG)
 
 <h2>Front End set up:</h2>
 <ul>
