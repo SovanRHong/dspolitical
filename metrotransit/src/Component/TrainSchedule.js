@@ -23,8 +23,6 @@ const TrainSchedule = () => {
         //if not successful display error message
         console.error("catch", e);
         alert(e);
-      } finally {
-        return setAllTrains;
       }
     }
     fetchAllTrain();

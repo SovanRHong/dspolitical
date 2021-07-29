@@ -19,8 +19,6 @@ const SearchByTrain = () => {
       } catch (e) {
         //if not successful display error message
         console.error("catch", e);
-      } finally {
-        return setSearchedStationData;
       }
     }
     SearchByStationCode();
